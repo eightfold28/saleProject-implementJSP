@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+	<link rel="stylesheet" type="text/css" href="chatstyle.css">
+	<script src="angular.min.js"></script>
+	<script type="text/javascript" src="chat.js"></script>
+</head>
+<body>
+	<!-- <a href="#" ng-click="hideChat = !hideChat">Test</a> -->
+	<div class = "chatbox" ng-show="hideChat">
+		<div class = "username">
+			username
+			<a href="#" ng-click="hideChat = !hideChat"><img ng-src = "cancel.png"></a>
+		</div>
+		<div class = "chatlogs">
+		<hr>
+		<br>
+			<div class = "chat received">
+				<p class="messages">Hey</p>
+			</div>
+			<div class = "chat sent">
+				<p class="messages">Hello</p>
+			</div>
+			<div class = "chat received">
+				<p class="messages">How are you?</p>
+			</div>
+		</div>
+		
+		<hr>
+
+		<div class="chat-input">
+			<textarea></textarea>
+			<button>Kirim</button>
+		</div>
+	</div>
+</body>
+</html>
