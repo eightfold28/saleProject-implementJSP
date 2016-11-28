@@ -8,6 +8,11 @@ test.controller('chatController', function($scope) {
 					];
 
 	$scope.sendMessage = function() {
-		$scope.data.push({msg: $scope.newmsg, status: 'sent'})
+		$scope.messages.push({
+			msg: $scope.newmsg, 
+			status: 'sent'
+		});
+
+		document.getElementById("newmsg").value = "";
 	};
 });
