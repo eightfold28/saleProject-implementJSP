@@ -68,7 +68,8 @@ public class TestServlet extends HttpServlet {
         // As an admin, the app has access to read and write all data, regardless of Security Rules
         DatabaseReference ref = FirebaseDatabase
             .getInstance()
-            .getReference("conversations/" + from + "-" + to);
+//            .getReference("conversations/" + from + "-" + to);
+            .getReference("conversations/" + ((from.compareTo(to) < 0) ? (from + "-" + to) : (to + "-" + from)));
         
         
         DatabaseReference newPostRef = ref.push();
