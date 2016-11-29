@@ -38,9 +38,10 @@ public class TestServlet extends HttpServlet {
             .build();
         if (FirebaseApp.getApps().isEmpty()) {
             FirebaseApp.initializeApp(options);
-        } else {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         }
+//        } else {
+//            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+//        }
         
     }
     
