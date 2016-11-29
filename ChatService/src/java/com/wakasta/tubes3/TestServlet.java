@@ -32,14 +32,18 @@ public class TestServlet extends HttpServlet {
 
     public void init() {
         InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream("com/wakasta/tubes3/tugas3-4f03a-firebase-adminsdk-q3j51-2cf5e105cd.json");
-
         FirebaseOptions options = new FirebaseOptions.Builder()
             .setServiceAccount(input)
             .setDatabaseUrl("https://tugas3-4f03a.firebaseio.com")
             .build();
-
-        FirebaseApp.initializeApp(options);
+        if (FirebaseApp.getApps().isEmpty()) {
+            FirebaseApp.initializeApp(options);
+        } else {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        }
+        
     }
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -64,7 +68,8 @@ public class TestServlet extends HttpServlet {
         // As an admin, the app has access to read and write all data, regardless of Security Rules
         DatabaseReference ref = FirebaseDatabase
             .getInstance()
-            .getReference("conversations/" + from + "-" + to);
+//            .getReference("conversations/" + from + "-" + to);
+            .getReference("conversations/" + ((from.compareTo(to) < 0) ? (from + "-" + to) : (to + "-" + from)));
         
         
         DatabaseReference newPostRef = ref.push();
@@ -74,11 +79,13 @@ public class TestServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 //        String name = request.getParameter("name");
         JSONObject res = new JSONObject();
-        res.put("message", "Halo " + from + to + message);
+//        res.put("message", "Halo " + from + to + message);
+        res.put("message", "from" + from);
+        res.put("message", "to" + to);
+        res.put("message", message);
         res.put("userAgent", request.getHeader("User-Agent"));
         out.println(res.toJSONString());
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

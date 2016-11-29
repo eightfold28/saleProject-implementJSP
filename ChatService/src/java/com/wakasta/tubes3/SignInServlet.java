@@ -8,6 +8,8 @@ package com.wakasta.tubes3;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.tasks.OnSuccessListener;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +39,13 @@ public class SignInServlet extends HttpServlet {
             .setDatabaseUrl("https://tugas3-4f03a.firebaseio.com")
             .build();
 
-        FirebaseApp.initializeApp(options);
+        if (FirebaseApp.getApps().isEmpty()) {
+            FirebaseApp.initializeApp(options);
+        } else {
+            if (FirebaseDatabase.getInstance().getReference() == null) {
+                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            }
+        }
     }
 
     /**
