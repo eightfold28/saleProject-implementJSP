@@ -70,8 +70,12 @@ public class TestServlet extends HttpServlet {
             .getInstance()
 //            .getReference("conversations/" + from + "-" + to);
             .getReference("conversations/" + ((from.compareTo(to) < 0) ? (from + "-" + to) : (to + "-" + from)));
+        DatabaseReference refNotif = FirebaseDatabase
+            .getInstance()
+            .getReference("conversation_notif");
         
-        
+        refNotif.child(to.toLowerCase()).setValue( new Sender(from) );
+
         DatabaseReference newPostRef = ref.push();
         Message M = new Message(from, to, message);
         newPostRef.setValue(M);
