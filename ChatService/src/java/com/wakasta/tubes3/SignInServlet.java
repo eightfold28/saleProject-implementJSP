@@ -8,16 +8,15 @@ package com.wakasta.tubes3;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.tasks.OnCompleteListener;
 import com.google.firebase.tasks.OnSuccessListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import javafx.scene.media.Media;
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +36,14 @@ public class SignInServlet extends HttpServlet {
             .setDatabaseUrl("https://tugas3-4f03a.firebaseio.com")
             .build();
 
-        FirebaseApp.initializeApp(options);
+        if (FirebaseApp.getApps().isEmpty()) {
+            FirebaseApp.initializeApp(options);
+        }
+//        } else {
+////            if (FirebaseDatabase.getInstance().getReference() == null) {
+//                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+////            }
+//        }
     }
 
     /**
@@ -59,6 +65,7 @@ public class SignInServlet extends HttpServlet {
         
         final AsyncContext asyncContext = request.startAsync(request, response);
 
+                
         FirebaseAuth.getInstance().createCustomToken(token, additionalClaims)
             .addOnSuccessListener(new OnSuccessListener<String>() {
                 @Override

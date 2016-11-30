@@ -33,6 +33,7 @@ function SaleProjectChat() {
   this.signOutButton = document.getElementById('sign-out');
   this.signInSnackbar = document.getElementById('must-signin-snackbar');
 
+
   this.fromInput = document.getElementById('from');
   this.toInput = document.getElementById('to');
 
@@ -57,21 +58,21 @@ function SaleProjectChat() {
   // this.testForm.addEventListener('submit', this.submitTest.bind(this));
 }
 
-SaleProjectChat.prototype.submitTest = function () {
-  var name = document.getElementById('test').value;
-  $.post({
-    url: 'http://localhost:8080/ChatService/test',
-    data: {
-      name: name
-    }
-  })
-  .done(function (data) {
-    alert(JSON.stringify(data));
-  })
-  .fail(function () {
-    console.log('error');
-  });
-}
+// SaleProjectChat.prototype.submitTest = function () {
+//   var name = document.getElementById('test').value;
+//   $.post({
+//     url: 'http://localhost:8080/ChatService/test',
+//     data: {
+//       name: name
+//     }
+//   })
+//   .done(function (data) {
+//     alert(JSON.stringify(data));
+//   })
+//   .fail(function () {
+//     console.log('error');
+//   });
+// }
 
 SaleProjectChat.prototype.ntardeh = function () {
   var from = document.getElementById('from').value;
@@ -89,7 +90,8 @@ SaleProjectChat.prototype.ntardeh = function () {
     this.displayMessage(data.key, val.from, val.to, val.message);
   }.bind(this);
   this.messagesRef.on('child_added', setMessage);
-}
+  this.messagesRef.on('child_changed', setMessage);
+};
 
 // Sets up shortcuts to Firebase features and initiate firebase auth.
 SaleProjectChat.prototype.initFirebase = function() {
@@ -99,7 +101,7 @@ SaleProjectChat.prototype.initFirebase = function() {
   this.database = firebase.database();
   this.storage = firebase.storage();
   // Initiates Firebase auth and listen to auth state changes.
-  // this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
+  this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
 };
 
 // Saves a new message on the Firebase DB.
@@ -135,13 +137,16 @@ SaleProjectChat.prototype.saveMessage = function(e) {
     }
   })
   .done(function (data) {
-    alert(JSON.stringify(data));
+    alert(JSON.stringify(data));  
+    //  Clear message text field and SEND button state.
+    SaleProjectChat.resetMaterialTextfield(this.messageInput);
+    this.toggleButton();  
   })
   .fail(function () {
     console.log('error');
   });
-
   }
+  
 };
 
 SaleProjectChat.prototype.signIn = function () {
@@ -156,6 +161,7 @@ SaleProjectChat.prototype.signIn = function () {
   })
   .done(function (data) {
     console.log('custom token: ', data.token);
+    alert(JSON.stringify(data.token));
     firebase.auth().signInWithCustomToken(data.token).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;

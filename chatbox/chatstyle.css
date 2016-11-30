@@ -17,6 +17,9 @@ body {
 	background: #fff;
 	padding: 25px;
 	margin: 25px auto;
+	position : fixed;
+	right : 10px;
+	bottom : 10px;
 }
 
 .chatlogs {
