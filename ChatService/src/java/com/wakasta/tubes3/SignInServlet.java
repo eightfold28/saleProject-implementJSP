@@ -38,11 +38,12 @@ public class SignInServlet extends HttpServlet {
 
         if (FirebaseApp.getApps().isEmpty()) {
             FirebaseApp.initializeApp(options);
-        } else {
-            if (FirebaseDatabase.getInstance().getReference() == null) {
-                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-            }
         }
+//        } else {
+////            if (FirebaseDatabase.getInstance().getReference() == null) {
+//                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+////            }
+//        }
     }
 
     /**

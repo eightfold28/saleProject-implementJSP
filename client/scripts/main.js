@@ -137,16 +137,16 @@ SaleProjectChat.prototype.saveMessage = function(e) {
     }
   })
   .done(function (data) {
-    alert(JSON.stringify(data));
+    alert(JSON.stringify(data));  
     //  Clear message text field and SEND button state.
     SaleProjectChat.resetMaterialTextfield(this.messageInput);
-    this.toggleButton();
+    this.toggleButton();  
   })
   .fail(function () {
     console.log('error');
   });
-
   }
+  
 };
 
 SaleProjectChat.prototype.signIn = function () {
