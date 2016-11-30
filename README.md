@@ -14,17 +14,11 @@ Diharapkan dengan tugas ini Anda dapat mengerti:
 
 ## Anggota Tim
 
-Setiap kelompok beranggotakan **3 - 4 orang**. Daftar anggota kelompok terdapat pada link berikut: https://drive.google.com/open?id=1wpzU2VHZXvSVNR6TS4sxILVvHimQYhxQhorMr1nSelw
-
-## Petunjuk Pengerjaan
-1. Buatlah organisasi pada gitlab dengan nama sesuai dengan nama tim yang anda daftarkan.
-2. Tambahkan anggota tim pada organisasi anda.
-3. Fork pada repository ini dengan organisasi yang telah dibuat.
-4. Ubah hak akses repository hasil Fork anda menjadi **private**.
-5. Silakan commit pada repository anda (hasil fork). Lakukan berberapa commit dengan pesan yang bermakna, contoh: `fix css`, `create post done`, jangan seperti `final`, `benerin dikit`. Disarankan untuk tidak melakukan commit dengan perubahan yang besar karena akan mempengaruhi penilaian (contoh: hanya melakukan satu commit kemudian dikumpulkan). Sebaiknya commit dilakukan setiap ada penambahan fitur. **Commit dari setiap anggota tim akan mempengaruhi penilaian individu.** Jadi, setiap anggota tim harus melakukan commit yang berpengaruh terhadap proses pembuatan aplikasi.
-6. Edit file readme ini semenarik mungkin (gunakan panduan Markdown language), diperbolehkan untuk merubah struktur dari readme ini. (Soal tidak perlu dipertahankan).
-7. Pada Readme terdapat tampilan aplikasi dan penjelasan mengenai pembagian tugas masing-masing anggota (lihat formatnya pada bagian **pembagian tugas**).
-8. Merge request dari repository anda ke repository ini dengan format **Nama kelompok** - **NIM terkecil** - **Nama Lengkap dengan NIM terkecil** sebelum **Rabu, 30 November 2016 18.00**.
+Nama Kelompok: Wakasta
+Anggota:
+13514028 Dharma Kurnia Septialoka
+13514056 Hishshah Ghassani
+13514090 Candra Ramsi
 
 ![](img/arsitektur_umum.png)
 
@@ -122,31 +116,14 @@ Berikut adalah referensi yang dapat Anda baca terkait tugas ini:
 Selain itu, silahkan cari "user agent parser", "how to get my IP from HTTPServletRequest", dan "HTTP Headers field" untuk penjelasan lebih lanjut.
 
 
-### Prosedur Demo
-Sebelum demo, asisten akan melakukan checkout ke hash commit terakhir yang dilakukan sebelum deadline. Hal ini digunakan untuk memastikan kode yang akan didemokan adalah kode yang terakhir disubmit sebelum deadline.
-
-
 ### Pembagian Tugas
 
-
-Tugas kali ini cukup rumit, karena melibatkan layanan dari pihak ketiga, dan framework. Bila tak mengerti, luangkan waktu belajar lebih banyak. Bila belum juga mengerti, belajarlah bersama-sama kelompokmu. Bila Anda sekelompok bingung, bertanyalah (bukan menyontek) ke teman seangkatanmu. Bila seangkatan bingung, bertanyalah pada asisten manapun.
-
-
-Harap semua anggota kelompok mengerjakan baik implementasi Firebase sebagai *cloud service* maupun *framework* AngularJS. Tuliskan pembagian tugas seperti berikut ini.
-
-
-Chat app frontend :
-1. Fungsionalitas A : 135140XX  
-2. Fungsionalitas B : 135140XX  
-
-
-Chat app backend :  
-1. Fungsionalitas C : 135140XX  
-2. Fungsionalitas D : 135140XX  
-    
-Fitur security (IP, User-agent) :
-1. Fungsionalitas E : 135140XX
-2. Fungsionalitas F : 135140XX
+Chat app frontend (AngularJS): 13514056
+Chat app backend:
+1. Firebase: 13514028
+2. User online/offline: 13514090
+3. Integrasi chat dan catalog: 13514090
+4. Security: 13514090
 
 
 ## About
