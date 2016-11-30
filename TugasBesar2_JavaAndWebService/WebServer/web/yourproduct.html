@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SaleProject</title>
+		<style type="text/css">
+		</style>
+		<link rel="stylesheet" href="SaleProjectStyle.css" type="text/css">
+	</head>
+	<body>
+		<div class="title">
+			<br>
+			Sale<span style="color: #4887E4">Project</span> <br>
+		</div>
+
+		<?php include("userlogin.php"); ?>
+
+		<?php $activeid = $_GET['active_ID']; ?>
+		<div class="navigation_bar">
+			<ul>
+				<li><a href="catalog.php?active_ID=<?php echo $activeid; ?>">Catalog</a></li>
+				<li><a class="active" href="yourproduct.html?active_ID=<?php echo $activeid; ?>">Your Product</a></li>
+				<li><a href="addproduct.html?active_ID=<?php echo $activeid; ?>">Add Product</a></li>
+				<li><a href="sales.php?active_ID=<?php echo $activeid; ?>">Sales</a></li>
+				<li><a href="purchases.php?active_ID=<?php echo $activeid; ?>">Purchases</a></li>
+			</ul>
+		</div>
+		<div class="submenu_header">
+			<br>
+			What are you going to sell today?
+			<hr>
+		</div>
+
+		<div class="sales_history"><br></div>
+		<?php
+
+			$servername = "localhost";
+			$dbusername = "root";
+			$dbpassword = "";
+			$dbname = "tubeswbd1";
+
+			$con = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+
+			$active_ID=$_GET['active_ID'];
+
+			$sql = "SELECT item_ID, item_name, item_desc, FORMAT(item_price, 0) item_price, item_purchases, item_image, item_owner, DATE_FORMAT(date_added, '%W, %e %M %Y') dateadd, DATE_FORMAT(date_added, '%H.%i') time_added, isDeleted FROM item WHERE (isDeleted IS NULL or isDeleted=0) and item_owner='$active_ID'";
+			
+			$result = mysqli_query($con, $sql);
+
+			if ($con->connect_error) {
+				die("connection failed: " . $con->connect_error);
+			}
+
+			if($result->num_rows > 0) {
+				while ($row = mysqli_fetch_array($result)) { ?>
+				<div class = "catalog_item">
+					<b><?php echo $row['dateadd']; ?></b>
+					<br>
+					at <?php echo $row['time_added']; ?>
+					<br>
+					<hr>
+					<div class = "product_image"><?php echo '<img src="data:image/jpg;base64, '.base64_encode($row['item_image']). '" />' ?></div>
+					<div class = "yourprod_details">
+						<b><?php echo $row['item_name']; ?> </b><br>
+						<div class="harga">IDR <?php echo $row['item_price']; ?><br></div>
+						<div class="desc"><?php echo $row['item_desc']; ?></div>
+					</div>
+					<div class="yourprod_likeandpurch">
+						<br>
+						<?php 
+							$likes_temp = "SELECT COUNT(item_ID) as jumlahlikes FROM likes WHERE item_ID='".$row['item_ID']."'";
+							$likes_result = mysqli_query($con, $likes_temp);
+							while ($item_likes = mysqli_fetch_array($likes_result)) { echo $item_likes['jumlahlikes']; }
+						?> likes <br>
+						<?php echo $row['item_purchases']; ?> purchases
+						<br>
+						<br>
+						<br>
+						<div class="yourprod_button"><b><?php echo '<a href="editproduct.html?item_ID='.($row['item_ID']). '&active_ID='.$active_ID.'">' ?>EDIT</a></b></div>
+						<div class="yourprod_button"><b><?php echo "<a onClick=\"javascript: return confirm('Are you sure to delete this item?');\" href='yourproduct.php?item_ID=".$row['item_ID']."&active_ID=".$active_ID."'>DELETE</a>"; ?></b></div>
+					</div>
+					<div class = "yourprod_clear"><br><br></div><br>	
+				</div>
+				<?php } 
+			} else {
+				echo '<div class ="catalog_item">0 result</div>';
+			}
+			?>
+	</body>
+</html>
