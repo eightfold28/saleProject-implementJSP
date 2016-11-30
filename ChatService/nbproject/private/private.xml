@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/septialoka/Desktop/5th%20Semester/IF3110%20-%20Web-Based%20Application%20Development/Assignment/Tubes%203/ChatServer/web/index.html</file>
+            <file>file:/E:/Labs/TugasBesar3_AngularJSandFirebase/ChatService/nbproject/build-impl.xml</file>
+            <file>file:/E:/Labs/TugasBesar3_AngularJSandFirebase/ChatService/web/WEB-INF/web.xml</file>
+            <file>file:/E:/Labs/TugasBesar3_AngularJSandFirebase/ChatService/src/java/com/wakasta/tubes3/Message.java</file>
+            <file>file:/E:/Labs/TugasBesar3_AngularJSandFirebase/ChatService/src/java/com/wakasta/tubes3/Sender.java</file>
+            <file>file:/E:/Labs/TugasBesar3_AngularJSandFirebase/ChatService/src/java/com/wakasta/tubes3/TestServlet.java</file>
+            <file>file:/E:/Labs/TugasBesar3_AngularJSandFirebase/ChatService/src/java/com/wakasta/tubes3/SignInServlet.java</file>
+            <file>file:/E:/Labs/TugasBesar3_AngularJSandFirebase/ChatService/src/conf/MANIFEST.MF</file>
         </group>
     </open-files>
 </project-private>
